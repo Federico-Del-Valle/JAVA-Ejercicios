@@ -1,5 +1,7 @@
 package Modelos;
 
+import java.util.Objects;
+
 public class Perro extends Animal{
     private String raza;
     public Perro(){
@@ -20,6 +22,20 @@ public class Perro extends Animal{
         System.out.println(getNombre() + " esta ladrando");
     }
 
+    @Override
+    public String comer(){
+        return this.getNombre() + " esta comiendo croquetas";
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Perro perro = (Perro) o;
+        return Objects.equals(raza, perro.raza);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(raza);
+    }
 }
