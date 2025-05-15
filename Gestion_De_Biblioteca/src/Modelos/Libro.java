@@ -5,6 +5,7 @@ public class Libro extends ItemBiblioteca implements Catalogable {
     private String titulo;
     private String autor;
     private int cantPaginas;
+    private boolean prestado = false;
 
     public String getTitulo() {
         return titulo;
@@ -34,9 +35,17 @@ public class Libro extends ItemBiblioteca implements Catalogable {
         this.cantPaginas = cantPaginas;
     }
 
+    public boolean isPrestado() {
+        return prestado;
+    }
+
+    public void setPrestado(boolean prestado) {
+        this.prestado = prestado;
+    }
+
     @Override
     public void devolver() {
-
+        this.prestado = false;
     }
     @Override
     public void calcularMultas() {
@@ -45,14 +54,11 @@ public class Libro extends ItemBiblioteca implements Catalogable {
 
     @Override
     public void prestar(){
-
+        this.prestado = true;
     }
 
     @Override
     public void obtenerInformacion(){
-        System.out.println("Informacion del libro: ");
-        System.out.println("Titulo: " + titulo);
-        System.out.println("Autor: " + autor);
-        System.out.println("CantPaginas: " + cantPaginas);
+        System.out.printf("%-30s  %-20s  %-10d  %-20s\n", titulo, autor, cantPaginas, prestado? "Prestado" : "Disponible");
     }
 }
